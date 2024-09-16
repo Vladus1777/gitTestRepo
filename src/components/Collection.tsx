@@ -1,14 +1,24 @@
-import { CollectionList } from "./CollectionList";
-import { TCollectionItem } from "../types/collectionType";
+import { useState } from 'react'
 
-const DUMMY_COLLECTION_ITEMS: Array<TCollectionItem> = [
-  { name: "Chi0", id: "id0" },{name: 'Chi1', id: 'id1'}
-];
+import { TCollection } from '../types/collectionType'
+import { CollectionItem } from './CollectionItem'
 
-export const Collection: React.FC = () => {
-  return (
-    <>
-      <CollectionList name="Collection 1" id="id1" items={DUMMY_COLLECTION_ITEMS} galleryMode={true}/>
-    </>
-  );
-};
+import classes from './Collection.module.css'
+
+export const Collection: React.FC<TCollection> = (props) => {
+	const [galleryMode, setGalleryMode] = useState(false)
+
+	return (
+		<>
+			<h1>{props.name}</h1>
+			<button
+				onClick={() => setGalleryMode((prevState) => !prevState)}
+			>{`${galleryMode ? 'Disalbe' : 'Enable'} gallery mode`}</button>
+			<ul className={classes['collection-list']}>
+				{props.items.map((item) => (
+					<CollectionItem name={item.name} id={item.id} />
+				))}
+			</ul>
+		</>
+	)
+}

@@ -1,0 +1,31 @@
+.collection {
+	/* height: 100vh; */
+	display: flex;
+	flex-direction: column;
+	/* align-items: stretch; */
+	gap: 1rem;
+	padding: 2rem;
+}
+
+.gallery-mode {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+}
+
+.collection-item {
+	padding: 1rem;
+	background-color: grey;
+}
+
+.collection button {
+	width: fit-content;
+	margin-left: auto;
+	background-color: gray;
+	padding: 1rem;
+	border-radius: 1rem;
+}
+
+.collection button:hover {
+	background-color: rgb(72, 72, 72);
+}
