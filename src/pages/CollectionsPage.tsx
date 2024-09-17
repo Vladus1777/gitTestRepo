@@ -19,7 +19,7 @@ const CollectionPage: React.FC = () => {
 export default CollectionPage
 
 export async function loader() {
-	const collections = await getCollections()
+	const collections = await getCollections();
 	console.log('hola', collections)
 
 	return { collections }
