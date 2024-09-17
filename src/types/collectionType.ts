@@ -10,3 +10,4 @@ export type TCollection = {
 	img:string
 	items: TCollectionItem[]
 }
+
