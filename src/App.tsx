@@ -1,13 +1,19 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RootLayout from './pages/RootLayout'
 import CollectionLayout from './pages/CollectionLayout'
-import { CollectionPage } from './pages/CollectionPage'
+import CollectionPage, {
+	loader as collectionLoader,
+} from './pages/CollectionsPage'
+import ErrorPage from './pages/ErrorPage'
+import CollectionDetailsPage, {
+	loader as collectionDetailsLoader,
+} from './pages/CollectionDetailsPage'
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <RootLayout />,
-		errorElement: <p>Error</p>,
+		errorElement: <ErrorPage />,
 		children: [
 			{
 				index: true,
@@ -18,15 +24,19 @@ const router = createBrowserRouter([
 				element: <CollectionLayout />,
 				children: [
 					{
+						// collection list with preview
 						index: true,
 						element: <CollectionPage />,
+						loader: collectionLoader,
 					},
 					{
 						path: ':collectionId',
 						children: [
 							{
+								// detailed collection page
 								index: true,
-								element: <p>Collection Page</p>,
+								element: <CollectionDetailsPage />,
+								loader: collectionDetailsLoader,
 							},
 							{
 								path: 'edit',
@@ -46,7 +56,7 @@ const router = createBrowserRouter([
 
 const App = () => {
 	return (
-		<div style={{ backgroundColor: 'grey', height: '100vh' }}>
+		<div>
 			<RouterProvider router={router} />
 		</div>
 	)

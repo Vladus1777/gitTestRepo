@@ -6,7 +6,7 @@ export default function RootLayout() {
 	return (
 		<>
 			<MainHeader />
-			<main>
+			<main className="bg-slate-400 ">
 				{/* {navigation.state === 'loading' && <p>Loading...</p>} */}
 				<Outlet />
 			</main>

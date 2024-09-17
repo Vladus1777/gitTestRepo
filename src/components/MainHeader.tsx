@@ -1,17 +1,15 @@
 import { NavLink } from 'react-router-dom'
 
-import classes from './MainHeader.module.css'
-
 export const MainHeader = () => {
 	return (
-		<header>
-			<nav>
-				<ul>
+		<header className="h-[44] w-[100%] bg-fuchsia-600 text-white ">
+			<nav className="h-full w-[85%]  flex justify-between items-center  mx-auto">
+				<span className="text-[20px] w-[100px] h-[100px] flex items-center justify-center bg-fuchsia-700">
+					CApp
+				</span>
+				<ul className="grid h-full w-[30%] grid-cols-2 gap-[10px]">
 					<li>
 						<NavLink
-							className={({ isActive }) =>
-								isActive ? classes['active-page'] : undefined
-							}
 							// className={({ isActive }) =>
 							// 	isActive ? classes.active : undefined
 							// }
@@ -23,9 +21,6 @@ export const MainHeader = () => {
 					</li>
 					<li>
 						<NavLink
-							className={({ isActive }) =>
-								isActive ? classes['active-page'] : undefined
-							}
 							// className={({ isActive }) =>
 							// 	isActive ? classes.active : undefined
 							// }
