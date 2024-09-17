@@ -64,3 +64,6 @@ export const getCollectionById = async (id: string): Promise<TCollection[]> =>
       resolve(filterCollection);
     }, 1000);
   });
+
+  // el setTimeOut no funciona con asyncAwait
+  
