@@ -1,14 +1,21 @@
-import { CollectionList } from "./CollectionList";
-import { TCollectionItem } from "../types/collectionType";
+import { useState } from "react";
+import { TCollection } from "../types/collectionType";
+import { CollectionItem } from "./CollectionItem";
 
-const DUMMY_COLLECTION_ITEMS: Array<TCollectionItem> = [
-  { name: "Chi0", id: "id0" },{name: 'Chi1', id: 'id1'}
-];
+export const Collection: React.FC<TCollection> = (props) => {
+  const [galleryMode, setGalleryMode] = useState(false);
 
-export const Collection: React.FC = () => {
   return (
     <>
-      <CollectionList name="Collection 1" id="id1" items={DUMMY_COLLECTION_ITEMS} galleryMode={true}/>
+      <h1>{props.name}</h1>
+      <button onClick={() => setGalleryMode((prevState) => !prevState)}>{`${
+        galleryMode ? "Disable" : "Enable"
+      } gallery mode`}</button>
+      <ul>
+        {props.items.map((item) => (
+          <CollectionItem name={item.name} id={item.id} img={item.img}/>
+        ))}
+      </ul>
     </>
   );
 };
