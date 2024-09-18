@@ -5,10 +5,9 @@ export default function CollectionLayout() {
 	return (
 		<>
 			{/* <MainHeader /> */}
-			<main>
-				{/* {navigation.state === 'loading' && <p>Loading...</p>} */}
-				<Outlet />
-			</main>
+
+			{/* {navigation.state === 'loading' && <p>Loading...</p>} */}
+			<Outlet />
 		</>
 	)
 }

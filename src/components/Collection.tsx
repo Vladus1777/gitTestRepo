@@ -13,7 +13,11 @@ export const Collection: React.FC<TCollection> = (props) => {
 			>{`${galleryMode ? 'Disable' : 'Enable'} gallery mode`}</button>
 			<ul>
 				{props.items.map((item) => (
-					<CollectionItem name={item.name} id={item.id} />
+					<CollectionItem
+						name={item.name}
+						id={item.id}
+						img={item.img}
+					/>
 				))}
 			</ul>
 		</>

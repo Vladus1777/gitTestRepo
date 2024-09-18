@@ -8,6 +8,9 @@ import ErrorPage from './pages/ErrorPage'
 import CollectionDetailsPage, {
 	loader as collectionDetailsLoader,
 } from './pages/CollectionDetailsPage'
+import { action as newCollectionAction } from './components/CollectionForm'
+import NewCollectionPage from './pages/NewCollectionPage'
+import EditCollectionPage from './pages/EditCollectionPage'
 
 const router = createBrowserRouter([
 	{
@@ -40,13 +43,15 @@ const router = createBrowserRouter([
 							},
 							{
 								path: 'edit',
-								element: <p>Edit Collection Page</p>,
+								element: <EditCollectionPage />,
+								loader: collectionDetailsLoader,
 							},
 						],
 					},
 					{
 						path: 'new',
-						element: <p>New Collection Page</p>,
+						element: <NewCollectionPage />,
+						action: newCollectionAction,
 					},
 				],
 			},
@@ -56,9 +61,9 @@ const router = createBrowserRouter([
 
 const App = () => {
 	return (
-		<div>
+		<>
 			<RouterProvider router={router} />
-		</div>
+		</>
 	)
 }
 
