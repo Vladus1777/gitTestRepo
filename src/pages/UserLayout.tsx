@@ -2,14 +2,13 @@ import { Outlet, useNavigation } from 'react-router-dom'
 import { MainHeader } from '../components/MainHeader'
 import { MainFooter } from '../components/MainFooter'
 
-export default function RootLayout() {
+export default function UserLayout() {
     const navigation = useNavigation()
 
     return (
         <>
-            <MainHeader />
             <div className="h-[2000px] bg-gray-50">
-                <main className="relative mx-auto max-w-screen-xl py-8">
+                <main className="relative mx-auto max-w-screen-xl">
                     {navigation.state === 'loading' && (
                         <div className="flex h-56 w-56 items-center justify-center rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800">
                             <div role="status">

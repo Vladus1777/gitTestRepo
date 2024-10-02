@@ -15,31 +15,31 @@ const DUMMY_COLLECTION_ITEMS: TCollectionItem[] = [
 // Collections 😀
 const DUMMY_COLLECTIONS: TCollection[] = [
 	{
-		name: 'Collection 1',
+		name: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, quod.',
 		id: 'id1',
 		items: DUMMY_COLLECTION_ITEMS,
 		img: 'https://via.placeholder.com/400x450',
 	},
 	{
-		name: 'Collection 2',
+		name: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
 		id: 'id2',
 		items: DUMMY_COLLECTION_ITEMS,
 		img: 'https://via.placeholder.com/500x600',
 	},
 	{
-		name: 'Collection 3',
+		name: 'Lorem ipsum dolor sit.',
 		id: 'id3',
 		items: DUMMY_COLLECTION_ITEMS,
 		img: 'https://via.placeholder.com/400x600',
 	},
 	{
-		name: 'Collection 4',
+		name: 'Lorem ipsum.',
 		id: 'id4',
 		items: DUMMY_COLLECTION_ITEMS,
 		img: 'https://via.placeholder.com/350x200',
 	},
 	{
-		name: 'Collection 5',
+		name: 'Lorem ipsum dolor sit amet consectetur.',
 		id: 'id5',
 		items: DUMMY_COLLECTION_ITEMS,
 		img: 'https://via.placeholder.com/500x450',
@@ -67,7 +67,7 @@ export const getCollectionById = (id: string): Promise<TCollection[]> =>
 
 // el setTimeOut no funciona con asyncAwait
 
-let httpStatus = 500
+let httpStatus = 200
 
 export const addNewCollection = async (formData) => {
 	// ? replace resolve with reject for error handling

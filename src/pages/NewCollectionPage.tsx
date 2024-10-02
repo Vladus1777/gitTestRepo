@@ -1,11 +1,11 @@
-import NewCollectionForm from '../components/CollectionForm'
+import NewCollectionForm from '../components/Form/CollectionForm'
 
 const NewCollectionPage: React.FC = () => {
-	return (
-		<>
-			<NewCollectionForm method="POST" />
-		</>
-	)
+    return (
+        <>
+            <NewCollectionForm method="POST" />
+        </>
+    )
 }
 
 export default NewCollectionPage
