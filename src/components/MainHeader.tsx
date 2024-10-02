@@ -66,7 +66,7 @@ export const MainHeader = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="collections"
+                                    to=
                                     className={({ isActive }) =>
                                         `${
                                             isActive

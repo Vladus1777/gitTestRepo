@@ -2,7 +2,7 @@ import { Link, useLoaderData } from 'react-router-dom'
 
 import Card from '../components/Card'
 import LinkButton from '../components/Button/LinkButton'
-import { getCollections } from '../../firebase/firebase'
+import { auth, getCollections } from '../../firebase/firebase'
 
 const CollectionPage: React.FC = () => {
     const { collections } = useLoaderData()
@@ -62,7 +62,7 @@ const CollectionPage: React.FC = () => {
 export default CollectionPage
 
 export async function loader() {
-    const collections = await getCollections('user1')
+    const collections = await getCollections(auth.currentUser?.uid)
     console.log('getCollections', collections)
 
     return { collections }

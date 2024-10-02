@@ -52,10 +52,8 @@ export const auth = getAuth(app)
 
 // AUTH
 
-export const user = auth.currentUser
-
-if (user !== null) {
-    console.log('user', user)
+if (auth.currentUser !== null) {
+    console.log('user', auth.currentUser)
 }
 
 //
@@ -68,9 +66,12 @@ export const authUser = async (email: string, password: string) => {
 }
 
 export const signInUser = async (email: string, password: string) => {
-    await signInWithEmailAndPassword(auth, email, password).catch((error) => {
-        console.log(error)
-    })
+    const user = await signInWithEmailAndPassword(auth, email, password).catch(
+        (error) => {
+            console.log(error)
+        }
+    )
+    return user
 }
 
 export const signOutUser = async () => {
@@ -93,7 +94,7 @@ export const unsubscribe = () => {
 }
 
 export const updateUserEmail = (email) => {
-    updateEmail(user, email)
+    updateEmail(auth.currentUser, email)
         .then(() => {
             console.log('updateUserEmail')
         })
@@ -103,7 +104,7 @@ export const updateUserEmail = (email) => {
 }
 
 export const updateUserPassword = (password) => {
-    updatePassword(user, password)
+    updatePassword(auth.currentUser, password)
         .then(() => {
             console.log('updateUserPassword')
         })
@@ -113,7 +114,7 @@ export const updateUserPassword = (password) => {
 }
 
 export const updateUserProfile = () => {
-    updateProfile(user, {
+    updateProfile(auth.currentUser, {
         displayName: 'Jane Q. User',
         photoURL: 'https://example.com/jane-q-user/profile.jpg',
     })
@@ -128,7 +129,7 @@ export const updateUserProfile = () => {
 // EMAIL
 
 export const sendUserPasswordResetEmail = () => {
-    sendPasswordResetEmail(auth, user.email)
+    sendPasswordResetEmail(auth, auth.currentUser.email)
         .then(() => {
             console.log('sendUserPasswordResetEmail')
         })
@@ -154,7 +155,7 @@ export const reauthenticateUserWithCredential = (email) => {
         window.location.href
     )
 
-    reauthenticateWithCredential(user, authCredential)
+    reauthenticateWithCredential(auth.currentUser, authCredential)
         .then(() => {
             console.log('reauthenticateWithCredential')
         })
@@ -164,7 +165,7 @@ export const reauthenticateUserWithCredential = (email) => {
 }
 
 export const deleteUserAccount = () => {
-    deleteUser(user)
+    deleteUser(auth.currentUser)
         .then(() => {
             alert('deleteUserAccount')
         })

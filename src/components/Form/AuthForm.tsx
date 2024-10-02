@@ -18,6 +18,7 @@ import {
     updateUserPassword,
     auth,
     reauthenticateUserWithCredential,
+    deleteUserAccount,
 } from '../../../firebase/firebase'
 import Button from '../Button/Button'
 import Alert from '../Alert'
@@ -50,7 +51,8 @@ const AuthForm = ({ method }) => {
             </h2>
             <ul>
                 <li>Email: {auth.currentUser?.email}</li>
-                <li>displayName: {auth.currentUser?.displayName}</li>
+                <li>Email Verified? {auth.currentUser?.emailVerified}</li>
+                <li>Photo: {auth.currentUser?.photoURL}</li>
             </ul>
             <Form method={method}>
                 <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -66,7 +68,7 @@ const AuthForm = ({ method }) => {
                             type="email"
                             name="email"
                             id="email"
-                            className="dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-[--darkText] focus:border-violet-500 focus:ring-4 focus:ring-violet-300 dark:border-gray-600 dark:bg-gray-700 dark:text-[--lightText] dark:placeholder-gray-400"
+                            className="dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-[--darkText] focus:border-violet-500 focus:ring-4 focus:ring-violet-300 dark:bg-gray-700 dark:text-[--lightText] dark:placeholder-gray-400"
                             required
                         />
                     </div>
@@ -82,7 +84,7 @@ const AuthForm = ({ method }) => {
                             type="password"
                             name="password"
                             id="password"
-                            className="dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-[--darkText] focus:border-violet-500 focus:ring-4 focus:ring-violet-300 dark:border-gray-600 dark:bg-gray-700 dark:text-[--lightText] dark:placeholder-gray-400"
+                            className="dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-[--darkText] focus:border-violet-500 focus:ring-4 focus:ring-violet-300 dark:bg-gray-700 dark:text-[--lightText] dark:placeholder-gray-400"
                             required
                         />
                     </div>
@@ -117,17 +119,25 @@ const AuthForm = ({ method }) => {
                         </Button>
                         <Button
                             light
-                            onClick={() =>
-                                signInUser(
+                            onClick={async () => {
+                                // TODO
+                                const user = await signInUser(
                                     emailRef.current.value,
                                     passwordRef.current.value
                                 )
-                            }
+                                if (user) {
+                                    console.log(user)
+                                    navigate(`/${user.user.uid}`)
+                                }
+                            }}
                         >
                             Sign In
                         </Button>
                         <Button light onClick={signOutUser}>
                             Sign Out
+                        </Button>
+                        <Button light onClick={deleteUserAccount}>
+                            Delete User
                         </Button>
                         <Button light onClick={sendUserEmailVerification}>
                             sendUserEmailVerification
@@ -172,23 +182,25 @@ const AuthForm = ({ method }) => {
                     >
                         Cancel
                     </Button>
-                    {/* <Button disabled={isSubmitting} type="submit">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={2}
-                            stroke="currentColor"
-                            className="size-5"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
-                            />
-                        </svg>
-                        Add Collection
-                    </Button> */}
+                    {
+                        // <Button disabled={isSubmitting} type="submit">
+                        //     <svg
+                        //         xmlns="http://www.w3.org/2000/svg"
+                        //         fill="none"
+                        //         viewBox="0 0 24 24"
+                        //         strokeWidth={2}
+                        //         stroke="currentColor"
+                        //         className="size-5"
+                        //     >
+                        //         <path
+                        //             strokeLinecap="round"
+                        //             strokeLinejoin="round"
+                        //             d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
+                        //         />
+                        //     </svg>
+                        //     Add Collection
+                        // </Button>
+                    }
                 </div>
             </Form>
         </section>
